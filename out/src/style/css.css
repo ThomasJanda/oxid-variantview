@@ -1,0 +1,24 @@
+#variants.container.grid-striped
+{
+    margin-bottom:20px;
+    border: 1px solid #ddd;
+}
+#variants.container.grid-striped .row.content
+{
+    cursor:pointer;
+}
+#variants.container.grid-striped .row.content input
+{
+    vertical-align:middle;
+}
+#variants.container.grid-striped .row.content .col.price #productPrice
+{
+    float:none;
+}
+#variants.container.grid-striped .row:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+#variants.container.grid-striped .row.header
+{
+    background-color: rgba(0,0,0,.1);
+}
