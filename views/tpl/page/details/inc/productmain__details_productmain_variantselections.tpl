@@ -1,5 +1,5 @@
 [{oxstyle include=$oViewConf->getModuleUrl("rs-variantview", "out/src/style/css.css")}]
-
+[{assign var="oConfig"    value=$oViewConf->getConfig()}]
 [{assign var="blCanBuy" value=$aVariantSelections.blPerfectFit}]
 [{if !$blHasActiveSelections}]
     [{if !$blCanBuy && !$oDetailsProduct->isParentNotBuyable()}]
@@ -63,15 +63,18 @@
                 [{/if}]
             [{/foreach}]
             
+            [{assign var=aCol value=$oView->variantview_getColumnWidth($bHasUnitPrice)}]
+
+            
             <input type="hidden" name="[{$sFieldName|default:"varselid"}][[{$iKey}]]" value="[{if $oActiveSelection}][{$oActiveSelection->getValue()}][{/if}]">
             <div class="row header font-weight-bold py-2">
-                <div class="col col-3">[{$oList->getLabel()}]</div>
-                <div class="col col-3">[{oxmultilang ident="rs_variantview_table_header_price"}]</div>
+                <div class="col col-[{$aCol.0}]3">[{$oList->getLabel()}]</div>
+                <div class="col col-[{$aCol.1}]">[{oxmultilang ident="rs_variantview_table_header_price"}]</div>
                 [{if $bHasUnitPrice}]
-                    <div class="col col-3">[{oxmultilang ident="rs_variantview_table_header_price_unit"}]</div>
-                    <div class="col col-3">[{oxmultilang ident="rs_variantview_table_header_delivery"}]</div>
+                    <div class="col col-[{$aCol.2}]">[{oxmultilang ident="rs_variantview_table_header_price_unit"}]</div>
+                    <div class="col col-[{$aCol.3}]">[{oxmultilang ident="rs_variantview_table_header_delivery"}]</div>
                 [{else}]
-                    <div class="col col-6">[{oxmultilang ident="rs_variantview_table_header_delivery"}]</div>
+                    <div class="col col-[{$aCol.2}]">[{oxmultilang ident="rs_variantview_table_header_delivery"}]</div>
                 [{/if}]
             </div>
 
@@ -90,11 +93,11 @@
                         data-selection-id="[{$id}]"
                         data-selection-name="[{$sFieldName|default:"varselid"}][[{$iKey}]]"
                          >
-                        <div class="col title col-3">
+                        <div class="col title col-[{$aCol.0}]">
                             <input type="radio" name="varselid_radio[]" value="[{$oSelection->getValue()}]" [{if $oSelection->isActive()}] checked [{/if}]">
                             [{$oSelection->getName()}]
                         </div>
-                        <div class="col price col-3">
+                        <div class="col price col-[{$aCol.1}]">
 
                             [{oxhasrights ident="SHOWARTICLEPRICE"}]
                                 [{if $oProductVariant->getTPrice()}]
@@ -136,14 +139,14 @@
 
                         </div>
                         [{if $bHasUnitPrice}]
-                            <div class="col priceunit col-3">
+                            <div class="col priceunit col-[{$aCol.2}]">
                                 [{assign var="oUnitPrice" value=$oProductVariant->getUnitPrice()}]
                                 [{if $oUnitPrice}]
                                     [{oxprice price=$oUnitPrice currency=$currency}]/[{$oProductVariant->getUnitName()}]
                                 [{/if}]
                             </div>
                         [{/if}]
-                        <div class="col delivery [{if $bHasUnitPrice}]col-3[{else}]col-6[{/if}]">
+                        <div class="col delivery [{if $bHasUnitPrice}]col-[{$aCol.3}][{else}]col-[{$aCol.2}][{/if}]">
 
                             [{if $oProductVariant->getStockStatus() == -1}]
                                 <span class="stockFlag notOnStock">

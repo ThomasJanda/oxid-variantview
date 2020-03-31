@@ -45,6 +45,19 @@ $aModule = array(
             'block'    => 'details_productmain_priceperunit',
             'file'     => '/views/blocks/page/details/inc/productmain__details_productmain_priceperunit.tpl',
         ),
-
     ),
+        'settings'    => array(
+        array(
+            'group' => 'rs-variantview_main',
+            'name'  => 'rs-variantview_columns4',
+            'type'  => 'str',
+            'value' => '3|3|3|3',
+        ),
+        array(
+            'group' => 'rs-variantview_main',
+            'name'  => 'rs-variantview_columns3',
+            'type'  => 'str',
+            'value' => '4|4|4',
+        ),
+    )
 );

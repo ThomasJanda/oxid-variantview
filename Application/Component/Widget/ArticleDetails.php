@@ -82,4 +82,13 @@ class ArticleDetails extends ArticleDetails_parent
 
         return (double) $this->_variantview_getRatingValue;
     }
+
+
+    public function variantview_getColumnWidth($bHasUnitPrice)
+    {
+
+        $oConfig = $this->getConfig();
+        return explode("|",$oConfig->getConfigParam(($bHasUnitPrice?'rs-variantview_columns4':'rs-variantview_columns3')));
+
+    }
 }
