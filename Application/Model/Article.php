@@ -15,7 +15,7 @@ class Article extends Article_parent
                 if(!is_array($aVariants))
                     $aVariants=$aVariants->getArray();
             
-                $sActVariantId = key($aVariants);
+                $sActVariantId = (string) key($aVariants);
             }
         }
 
